@@ -39,17 +39,25 @@ function convertValues() {
   // }).format(inputCurrencyValue)
   
 function formatCurrency() {
-  if (primeiroSelect.value == 'dolar') {
-    currencyValueToConvert.innerHTML = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(inputCurrencyValue)
-  } else if (primeiroSelect.value == 'real'){
-    currencyValueToConvert.innerHTML = new Intl.NumberFormat('en-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  }).format(inputCurrencyValue)
-  }
+
+  switch (primeiroSelect.value) {
+      case 'dolar':
+        currencyValueToConvert.innerHTML = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(inputCurrencyValue);
+
+        break;
+      case 'real':
+        currencyValueToConvert.innerHTML = new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(inputCurrencyValue);
+        break;
+
+      default:
+        break;
+    }
 }
  formatCurrency()
 }
@@ -83,8 +91,6 @@ function changeCurrency() {
   if (primeiroSelect.value == 'dolar') {
     nomeMoeda1.innerHTML = 'Dólar americano'
     imagemPrimeiroSelect.src = './assets/dolar.png'
-   // currencyValueToConvert.innerHTML = '$' + inputCurrencyValue
-    //console.log(currencyValueToConvert)
   }
 
 
