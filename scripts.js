@@ -3,14 +3,17 @@ const segundoSelect = document.querySelector('.segundo-select')
 const primeiroSelect = document.querySelector('.primeiro-select')
 
 
-function convertValues() {
+async function convertValues() {
   const inputCurrencyValue = document.querySelector('.input-currency').value
   const currencyValueToConvert = document.querySelector(
     '.currency-value-to-convert',
   ) // Valor em Real
   const currencyValueConverted = document.querySelector('.currency-value') // Outras moedas
 
-  const dolarToday = 5.2
+  const data = await fetch("https://economia.awesomeapi.com.br/last/BRL-USD,USD-BRL").then(res => res.json())
+  console.log(data)
+
+  const dolarToday = data.USDBRL.high
   
 
 
@@ -27,16 +30,9 @@ function convertValues() {
     currencyValueConverted.innerHTML = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
-    }).format(inputCurrencyValue * 4.78) // valor de 4.78 equivale a um dolar com cada moeda o real terá valor diferente 
+    }).format(inputCurrencyValue * dolarToday) 
     
   }
-
-
-
-  // currencyValueToConvert.innerHTML = new Intl.NumberFormat('en-BR', {
-  //   style: 'currency',
-  //   currency: 'BRL',
-  // }).format(inputCurrencyValue)
   
 function formatCurrency() {
 
